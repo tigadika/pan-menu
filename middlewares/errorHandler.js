@@ -20,12 +20,28 @@ module.exports = (err, req, res, next) => {
       message = "Unauthorized";
       detail = "Password is invalid";
       break;
+    case "JsonWebTokenError":
+      code = 401;
+      message = "Unauthorized";
+      detail = "Invalid token";
+      break;
+    case "TokenExpiredError":
+      code = 401;
+      message = "Unauthorized";
+      detail = "Invalid token: expired";
+      break;
+    case "Unauthorized":
+      code = 401;
+      message = "Unauthorized";
+      detail = "You tried to do unauthorized action/s";
+      break;
     default:
       code = 500;
       message = "Internal Server Error";
       detail = err;
       break;
   }
+  console.log(err.name);
 
   res.status(code).json({
     code,
