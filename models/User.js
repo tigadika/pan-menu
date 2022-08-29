@@ -23,6 +23,12 @@ const UserSchema = mongoose.Schema({
     type: String,
     default: "admin",
   },
+  menus: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Menu",
+    },
+  ],
 });
 
 UserSchema.plugin(uniqueValidator, {
@@ -30,7 +36,7 @@ UserSchema.plugin(uniqueValidator, {
   message: "{PATH} has been registered",
 });
 
-UserSchema.pre("save", async function (next) {
+UserSchema.pre("save", async (next) => {
   if (this.isModified("password"))
     this.password = await hashPass(this.password);
   next();

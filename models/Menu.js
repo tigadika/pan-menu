@@ -20,6 +20,10 @@ const MenuSchema = mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = MenuSchema;

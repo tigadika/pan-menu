@@ -41,7 +41,7 @@ module.exports = (err, req, res, next) => {
       detail = err;
       break;
   }
-  console.log(err.name);
+  console.log(err);
 
   res.status(code).json({
     code,
