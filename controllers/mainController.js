@@ -19,7 +19,7 @@ module.exports = class Controller {
       const { id } = req.user;
       console.log(id);
 
-      const thisUser = await User.findById(id, "_id username");
+      const thisUser = await User.findById(id, "_id username ");
       const newMenu = new Menu({
         title,
         description,
